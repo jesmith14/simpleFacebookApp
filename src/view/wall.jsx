@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import PostDetail from './post-detail';
+import PostDetail from './post-detail';
 
 class Wall extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            wall: this.props.data.wall
+        }
     }
 
     renderWall() {
-        if(!this.props.wall) {
-            console.log(this.props.wall);
-            return <div>...Loading Wall...</div>
-        }
-        
-        return this.props.wall.map((post => {
+        return this.props.data.wall.map((post => {
             return (
                 <li
                     key={post.content}
@@ -25,12 +24,13 @@ class Wall extends Component {
     }
 
     render() {
+        console.log('*in wall: ', this.props.data.wall)
         return (
             <div className='wall'>
                 <h4 style={{ textAlign:'center'}}>Wall:</h4>
                 <div className='wallPosts'>
                     <ul className='list-group'>
-                        {/* {this.renderWall()} */}
+                        {this.renderWall()}
                     </ul>
                 </div>
                 <div>
@@ -44,6 +44,4 @@ class Wall extends Component {
 }
 
 const mapStateToProps = state => ({data:state})
-//Promote NewsFeed from a component to a container - it needs to know about this new dispatch
-//method newPost, make it available as a prop.
 export default connect(mapStateToProps)(Wall);

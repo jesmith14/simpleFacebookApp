@@ -5,11 +5,16 @@ import {
   SET_AUTH
 } from '../controller/constants'
 
+import {initialWall} from './wall'
+
+console.log('heerrree', initialWall)
+
 let initialState = {
   error: '',
   username: 'Jessie',
   password: '1234',
-  loggedIn: true
+  loggedIn: true,
+  wall: initialWall
 }
 
 function model(state = initialState, action) {
