@@ -19,16 +19,15 @@ class PostDetail extends Component {
     
 
     handleNewPost(event) {
-        let recentPost = {content: this.state.newPost}
-        let newWall = this.state.wall.push(recentPost)
-        console.log('OKI', this.state.newPost)
+        let newWall = this.state.wall.unshift(this.state.newPost)
         this.setState({wall: newWall})
         this.props.dispatch(newPost());
+        this.setState({newPost: ''})
     }
 
     handlePostChange(event) {
-        // console.log('wtf', event.target.value)
-        this.setState({newPost: event.target.value});
+        let newestPost = {content: event.target.value}
+        this.setState({newPost: newestPost});
     }
 
     render() {
