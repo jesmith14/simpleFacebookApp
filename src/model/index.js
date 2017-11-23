@@ -3,7 +3,8 @@ import {
   SET_USERNAME,
   SET_PASSWORD,
   SET_AUTH,
-  NEW_POST
+  NEW_POST,
+  SET_WALL_USERNAME
 } from '../controller/constants'
 
 import {initialWall} from './wall'
@@ -12,15 +13,17 @@ let initialState = {
   error: '',
   username: 'Jessie',
   password: '1234',
-  loggedIn: true,
-  wall: initialWall
+  loggedIn: false,
+  wall: initialWall,
+  wallUsername: ''
 }
 
 function model(state = initialState, action) {
   switch (action.type) {
     case SET_USERNAME:
       return Object.assign({}, state, {
-        username: action.key
+        username: action.key,
+        wallUsername: action.key
       })
 
     case SET_PASSWORD:
@@ -36,6 +39,11 @@ function model(state = initialState, action) {
     case NEW_POST:
     return Object.assign({}, state, {
         wall: state.wall
+    })
+
+    case SET_WALL_USERNAME:
+    return Object.assign({}, state, {
+        wallUsername: state.wallUsername
     })
 
     default:

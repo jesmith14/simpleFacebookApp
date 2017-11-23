@@ -20,22 +20,15 @@ class PostDetail extends Component {
     
 
     handleNewPost(event) {
-        // console.log('IN HANDLE NEW POST: new wall: ', this.state.newWall);
-        console.log('IN HANDLE NEW POST: this.state.wall', this.state.wall);
-        console.log('IN HANDLE NEW POST: this.state.newPost', this.state.newPost);
-        // this.setState({newWall: this.state.newWall.unshift(this.state.newPost)});
         this.state.wall.unshift(this.state.newPost)
-        console.log('HEREE', this.state.wall)
         this.setState({wall: this.state.wall})
-        // this.setState({wall: this.state.newWall});
         this.props.dispatch(newPost());
         this.setState({newPost: ''})
         this.inputTitle.value = "";
-        console.log('IN HANDLE NEW POST: after dispatching the action: ', this.state.wall);
+        console.log('Wall Posts: ', this.state.wall);
     }
 
     handlePostChange(event) {
-        console.log('IN HANDLE POST CHANGE: ', this.state.wall);
         let newestPost = {content: event.target.value}
         this.setState({newPost: newestPost});
     }

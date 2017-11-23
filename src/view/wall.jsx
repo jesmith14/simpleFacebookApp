@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostDetail from './post-detail';
+import { setWallUsername } from '../controller/index.js';
 
 class Wall extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            wall: this.props.data.wall
+            wall: this.props.data.wall,
+            username: this.props.data.username,
+            wallUsername: this.props.data.wallUsername
         }
     }
 
@@ -17,7 +20,9 @@ class Wall extends Component {
                 <li
                     key={post.content}
                     className='list-group-item'>
-                    <p>Post: {post.content}</p>
+                    <p><u><strong className='user'>{this.state.username}</strong> posted on <strong className='user'>{this.state.wallUsername}</strong>'s wall:</u>
+                    <br/>
+                     {post.content}</p>
                 </li>
             );
         }));
@@ -35,7 +40,6 @@ class Wall extends Component {
                 <div>
                     <strong><p style={{marginLeft:'10px', marginTop:'10px', textAlign:'center'}}>Write on Jessie's Wall: </p></strong>
                     <PostDetail />
-                    {/* <input className='list-group wallInput'/> */}
                 </div>
             </div>
         );
