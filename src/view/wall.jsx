@@ -24,7 +24,6 @@ class Wall extends Component {
     }
 
     render() {
-        console.log('*in wall: ', this.props.data.wall)
         return (
             <div className='wall'>
                 <h4 style={{ textAlign:'center'}}>Wall:</h4>

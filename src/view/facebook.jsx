@@ -14,13 +14,12 @@ class Facebook extends Component {
   }
 
   friendSearch() {
-    console.log('friend search');
+    // console.log('friend search');
   }
  
  
  
   render() {
-    console.log('**', this.props);
     return (
       <div className='container'>
         <div className='row topRow'>

@@ -16,10 +16,7 @@ let initialState = {
   wall: initialWall
 }
 
-let wall = initialWall
-
 function model(state = initialState, action) {
-  console.log('hee?')
   switch (action.type) {
     case SET_USERNAME:
       return Object.assign({}, state, {
