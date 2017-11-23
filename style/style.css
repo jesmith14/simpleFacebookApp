@@ -1,0 +1,70 @@
+.Login {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 50vh;
+}
+
+#loginButton {
+    margin-top: 5vh;
+    border: 1px solid black;
+}
+
+
+.profile-photo img {
+    height: 150px;
+    width: 250px
+}
+
+.wall {
+    border: 1px solid black;
+    background-color: #dfe3ee;
+}
+
+.newsFeed {
+    border: 1px solid black;
+    background-color: #dfe3ee;
+}
+
+.newsfeedPosts {
+    overflow-y: scroll;
+    height: 200px;
+}
+
+.topRow {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.secondRow {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.thirdRow {
+    margin-bottom: 30px;
+}
+
+.friendsList {
+    border: 1px solid black;
+    width: 250px;
+    background-color: #dfe3ee;
+    overflow-y: scroll;
+    height: 220px;
+}
+
+.wallInput {
+    width: 100%;
+}
+
+.wallPosts {
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.search-bar {
+    width:100%;
+}
