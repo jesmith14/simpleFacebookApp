@@ -35,7 +35,7 @@ class Wall extends Component {
                 </div>
                 <div>
                     <strong><p style={{marginLeft:'10px', marginTop:'10px', textAlign:'center'}}>Write on Jessie's Wall: </p></strong>
-                    {/* <PostDetail /> */}
+                    <PostDetail />
                     {/* <input className='list-group wallInput'/> */}
                 </div>
             </div>

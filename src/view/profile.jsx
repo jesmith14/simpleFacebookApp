@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProfilePicture from './profile-picture';
-import Wall from './Wall';
+import Wall from './wall';
 
 class Profile extends Component {
     constructor(props) {

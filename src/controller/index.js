@@ -2,7 +2,8 @@
 import {
     SET_USERNAME,
     SET_PASSWORD,
-    SET_AUTH
+    SET_AUTH,
+    NEW_POST
     } from './constants'
     
     export function setUsername(key) {
@@ -15,4 +16,8 @@ import {
 
     export function setAuth() {
       return {type: SET_AUTH}
+    }
+
+    export function newPost() {
+      return {type: NEW_POST}
     }

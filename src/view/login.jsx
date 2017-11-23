@@ -18,7 +18,6 @@ class Login extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handlePasswordChange(event) {
@@ -34,10 +33,6 @@ class Login extends Component {
     this.props.dispatch(setAuth())
     this.props.dispatch(setUsername(this.state.username));
     this.props.dispatch(setPassword(this.state.password));
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()
   }
 
   renderLogin() {

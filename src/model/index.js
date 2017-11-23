@@ -2,12 +2,11 @@
 import {
   SET_USERNAME,
   SET_PASSWORD,
-  SET_AUTH
+  SET_AUTH,
+  NEW_POST
 } from '../controller/constants'
 
 import {initialWall} from './wall'
-
-console.log('heerrree', initialWall)
 
 let initialState = {
   error: '',
@@ -17,7 +16,10 @@ let initialState = {
   wall: initialWall
 }
 
+let wall = initialWall
+
 function model(state = initialState, action) {
+  console.log('hee?')
   switch (action.type) {
     case SET_USERNAME:
       return Object.assign({}, state, {
@@ -33,6 +35,11 @@ function model(state = initialState, action) {
     return Object.assign({}, state, {
         loggedIn: !state.loggedIn
       })
+
+    case NEW_POST:
+    return Object.assign({}, state, {
+        wall: state.wall
+    })
 
     default:
       return state
