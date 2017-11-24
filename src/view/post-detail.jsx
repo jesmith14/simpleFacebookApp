@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {newPost} from '../controller'
+import {newPost, updateNewsfeed} from '../controller'
 // import { bindActionCreators } from 'redux';
 // import { newPost } from '../actions/index';
 
@@ -10,7 +10,10 @@ class PostDetail extends Component {
         this.state = {
             wall: this.props.wall,
             newPost: '',
-            newWall: this.props.wall
+            newWall: this.props.wall,
+            username: this.props.username,
+            newsfeed: this.props.newsfeed,
+            wallUsername: this.props.wallUsername
         }
 
         this.handleNewPost = this.handleNewPost.bind(this)
@@ -20,16 +23,20 @@ class PostDetail extends Component {
     
 
     handleNewPost(event) {
+        console.log('hold up: ', this.state)
         this.state.wall.unshift(this.state.newPost)
+        this.state.newsfeed.unshift(this.state.newPost)
         this.setState({wall: this.state.wall})
+        this.setState({newsfeed: this.state.newsfeed})
         this.props.dispatch(newPost());
+        this.props.dispatch(updateNewsfeed());
         this.setState({newPost: ''})
         this.inputTitle.value = "";
         console.log('Wall Posts: ', this.state.wall);
     }
 
     handlePostChange(event) {
-        let newestPost = {content: event.target.value}
+        let newestPost = {content: event.target.value, user: this.state.username, wallUsername: this.state.wallUsername}
         this.setState({newPost: newestPost});
     }
 
@@ -43,7 +50,7 @@ class PostDetail extends Component {
                 onChange={this.handlePostChange}
                 ref={el => this.inputTitle = el}
                 />
-                <button onClick={this.handleNewPost}>Post!</button>
+                <button style={{display:'block', margin:'auto'}} onClick={this.handleNewPost}>Post!</button>
             </div>
         );
     }
@@ -51,5 +58,5 @@ class PostDetail extends Component {
 
 }
 
-const mapStateToProps = state => ({wall: state.wall})
+const mapStateToProps = state => ({wall: state.wall, username: state.username, newsfeed: state.newsfeed, wallUsername: state.wallUsername})
 export default connect(mapStateToProps)(PostDetail);

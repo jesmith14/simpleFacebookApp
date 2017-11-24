@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProfilePicture from './profile-picture';
 import Wall from './wall';
+import NewsFeed from './newsfeed'
 
 class Profile extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class Profile extends Component {
             <div>
             <div className='row secondRow'>
               <div style={{marginRight:'50px'}} className='col-sm-3'>
-                <h4 >Welcome, {this.props.data.username}</h4>
+                <h4 >{this.props.data.username}</h4>
                 <ProfilePicture />
               </div>
               <div style={{marginLeft:'50px', border:'2 px solid black'}} className='col-sm-7'>
@@ -28,7 +29,7 @@ class Profile extends Component {
                 {/* <FriendsList /> */}
               </div>
               <div style={{marginLeft:'50px'}} className='col-sm-7'>
-                {/* <NewsFeed /> */}
+                <NewsFeed />
               </div>
             </div>
             </div>

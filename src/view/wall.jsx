@@ -12,6 +12,7 @@ class Wall extends Component {
             username: this.props.data.username,
             wallUsername: this.props.data.wallUsername
         }
+
     }
 
     renderWall() {
@@ -20,7 +21,7 @@ class Wall extends Component {
                 <li
                     key={post.content}
                     className='list-group-item'>
-                    <p><u><strong className='user'>{this.state.username}</strong> posted on <strong className='user'>{this.state.wallUsername}</strong>'s wall:</u>
+                    <p><u><strong className='user'>{post.user}</strong> posted on <strong className='user'>{this.state.wallUsername}</strong>'s wall:</u>
                     <br/>
                      {post.content}</p>
                 </li>
@@ -38,7 +39,7 @@ class Wall extends Component {
                     </ul>
                 </div>
                 <div>
-                    <strong><p style={{marginLeft:'10px', marginTop:'10px', textAlign:'center'}}>Write on Jessie's Wall: </p></strong>
+                    <strong><p style={{marginLeft:'10px', marginTop:'10px', textAlign:'center'}}>Write on {this.state.username}'s Wall: </p></strong>
                     <PostDetail />
                 </div>
             </div>

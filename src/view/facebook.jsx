@@ -23,7 +23,7 @@ class Facebook extends Component {
     return (
       <div className='container'>
         <div className='row topRow'>
-            <h2 style={{textAlign:'center'}}>Facebook | Created by Jessie Smith</h2>
+            <h2 style={{textAlign:'center'}}>Facebook</h2>
         </div>
         <hr/>
         <div className='row'>

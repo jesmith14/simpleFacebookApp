@@ -4,7 +4,9 @@ import {
     SET_PASSWORD,
     SET_AUTH,
     NEW_POST,
-    SET_WALL_USERNAME
+    SET_WALL_USERNAME,
+    UPDATE_NEWSFEED
+
     } from './constants'
     
     export function setUsername(key) {
@@ -25,4 +27,8 @@ import {
 
     export function setWallUsername() {
       return {type: SET_WALL_USERNAME}
+    }
+
+    export function updateNewsfeed() {
+      return {type: UPDATE_NEWSFEED}
     }
