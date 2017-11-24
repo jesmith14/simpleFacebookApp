@@ -13,7 +13,9 @@ class Login extends Component {
       validLogin: this.props.loggedIn,
       username: this.props.username,
       password: this.props.password,
-      wallUsername: this.props.wallUsername
+      wallUsername: this.props.wallUsername,
+      wall: this.props.wall,
+      newsfeed: this.props.newsfeed
     }
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
@@ -41,6 +43,8 @@ class Login extends Component {
     this.props.dispatch(setUsername(this.state.username));
     this.props.dispatch(setPassword(this.state.password));
     this.props.dispatch(setWallUsername(this.state.wallUsername));
+    console.log('Initial Wall: ', this.state.wall)
+    console.log('Initial Newsfeed: ', this.state.newsfeed)
   }
 
   renderLogin() {
@@ -94,6 +98,13 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => ({loggedIn: state.loggedIn, username: state.username, password: state.password, wallUsername: state.wallUsername})
+const mapStateToProps = state => ({
+  loggedIn: state.loggedIn,
+  username: state.username,
+  password: state.password,
+  wallUsername: state.wallUsername,
+  wall: state.wall,
+  newsfeed: state.newsfeed
+})
 
 export default connect(mapStateToProps)(Login)

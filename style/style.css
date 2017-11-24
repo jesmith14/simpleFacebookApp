@@ -31,7 +31,7 @@
 
 .newsfeedPosts {
     overflow-y: scroll;
-    height: 200px;
+    height: 250px;
 }
 
 .topRow {
@@ -50,8 +50,11 @@
 
 .friendsList {
     border: 1px solid black;
-    width: 250px;
     background-color: #dfe3ee;
+    width: 250px;
+}
+
+.friendsListItem {
     overflow-y: scroll;
     height: 220px;
 }

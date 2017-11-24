@@ -5,11 +5,14 @@ import {
   SET_AUTH,
   NEW_POST,
   SET_WALL_USERNAME,
-  UPDATE_NEWSFEED
+  UPDATE_NEWSFEED,
+  UPDATE_FRIENDS
 } from '../controller/constants'
 
 import {initialWall} from './wall'
 import {initialNewsFeed} from './newsfeed'
+import {initialFriends} from './friendslist'
+import {users} from './users'
 
 let initialState = {
   error: '',
@@ -18,7 +21,9 @@ let initialState = {
   loggedIn: false,
   wall: initialWall,
   wallUsername: '',
-  newsfeed: initialNewsFeed
+  newsfeed: initialNewsFeed,
+  friends: initialFriends,
+  users: users
 }
 
 function model(state = initialState, action) {
@@ -52,6 +57,11 @@ function model(state = initialState, action) {
     case UPDATE_NEWSFEED:
     return Object.assign({}, state, {
         newsfeed: state.newsFeed
+    })
+
+    case UPDATE_FRIENDS:
+    return Object.assign({}, state, {
+        friends : state.friends
     })
 
     default:

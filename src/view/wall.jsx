@@ -16,6 +16,7 @@ class Wall extends Component {
     }
 
     renderWall() {
+                
         return this.props.data.wall.map((post => {
             return (
                 <li

@@ -23,7 +23,6 @@ class PostDetail extends Component {
     
 
     handleNewPost(event) {
-        console.log('hold up: ', this.state)
         this.state.wall.unshift(this.state.newPost)
         this.state.newsfeed.unshift(this.state.newPost)
         this.setState({wall: this.state.wall})
@@ -33,6 +32,7 @@ class PostDetail extends Component {
         this.setState({newPost: ''})
         this.inputTitle.value = "";
         console.log('Wall Posts: ', this.state.wall);
+        console.log('Newsfeed Posts: ', this.state.newsfeed)
     }
 
     handlePostChange(event) {

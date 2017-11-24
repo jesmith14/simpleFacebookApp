@@ -5,7 +5,8 @@ import {
     SET_AUTH,
     NEW_POST,
     SET_WALL_USERNAME,
-    UPDATE_NEWSFEED
+    UPDATE_NEWSFEED,
+    UPDATE_FRIENDS
 
     } from './constants'
     
@@ -31,4 +32,8 @@ import {
 
     export function updateNewsfeed() {
       return {type: UPDATE_NEWSFEED}
+    }
+
+    export function updateFriends() {
+      return {type: UPDATE_FRIENDS}
     }

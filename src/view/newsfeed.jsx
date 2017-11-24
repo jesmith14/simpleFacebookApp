@@ -13,7 +13,6 @@ class NewsFeed extends Component {
 
     renderNewsFeed() {
         return this.state.newsfeed.map((post => {
-            console.log('HERE BB', post)
             return (
                 <li
                     key={post.content}
@@ -34,6 +33,8 @@ class NewsFeed extends Component {
                     <ul className='list-group'>
                         {this.renderNewsFeed()}
                     </ul>
+                </div>
+                <div style={{height:'25px'}}>
                 </div>
             </div>
         );
