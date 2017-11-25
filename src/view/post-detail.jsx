@@ -23,16 +23,15 @@ class PostDetail extends Component {
     
 
     handleNewPost(event) {
-        this.state.wall.unshift(this.state.newPost)
-        this.state.newsfeed.unshift(this.state.newPost)
-        this.setState({wall: this.state.wall})
-        this.setState({newsfeed: this.state.newsfeed})
-        this.props.dispatch(newPost());
-        this.props.dispatch(updateNewsfeed());
-        this.setState({newPost: ''})
+        // this.state.wall.unshift(this.state.newPost)
+        // this.setState({newsfeed: this.state.newsfeed.unshift(this.state.newPost)})
+        // this.setState({wall: this.state.wall})
+        // this.setState({newsfeed: this.state.newsfeed})
+        this.props.dispatch(newPost(this.state.newPost));
+        // this.setState({newPost: ''})
         this.inputTitle.value = "";
-        console.log('Wall Posts: ', this.state.wall);
-        console.log('Newsfeed Posts: ', this.state.newsfeed)
+        console.log('Wall Posts: ', this.props.wall);
+        console.log('Newsfeed Posts: ', this.props.newsfeed)
     }
 
     handlePostChange(event) {
@@ -58,5 +57,5 @@ class PostDetail extends Component {
 
 }
 
-const mapStateToProps = state => ({wall: state.wall, username: state.username, newsfeed: state.newsfeed, wallUsername: state.wallUsername})
+const mapStateToProps = state => ({wall: state.wall, username: state.username, newsfeed: state.newsfeed})
 export default connect(mapStateToProps)(PostDetail);

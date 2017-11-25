@@ -8,16 +8,15 @@ class Wall extends Component {
         super(props);
 
         this.state = {
-            wall: this.props.data.wall,
-            username: this.props.data.username,
-            wallUsername: this.props.data.wallUsername
+            wall: this.props.wall,
+            username: this.props.username,
+            wallUsername: this.props.wallUsername
         }
 
     }
 
     renderWall() {
-                
-        return this.props.data.wall.map((post => {
+        return this.props.wall.map((post => {
             return (
                 <li
                     key={post.content}
@@ -31,6 +30,7 @@ class Wall extends Component {
     }
 
     render() {
+        console.log('in wall', this.state)
         return (
             <div className='wall'>
                 <h4 style={{ textAlign:'center'}}>Wall:</h4>
@@ -48,5 +48,5 @@ class Wall extends Component {
     }
 }
 
-const mapStateToProps = state => ({data:state})
+const mapStateToProps = state => ({wall: state.wall, username: state.username, wallUsername: state.wallUsername})
 export default connect(mapStateToProps)(Wall);

@@ -22,8 +22,8 @@ import {
       return {type: SET_AUTH}
     }
 
-    export function newPost() {
-      return {type: NEW_POST}
+    export function newPost(dataFromUI) {
+      return {type: NEW_POST, content: dataFromUI.content, user: dataFromUI.user, wallUsername: dataFromUI.wallUsername};
     }
 
     export function setWallUsername() {

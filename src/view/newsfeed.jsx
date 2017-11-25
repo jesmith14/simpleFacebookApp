@@ -4,15 +4,10 @@ import { connect } from 'react-redux';
 class NewsFeed extends Component {
     constructor(props) {
         super(props);
-
-        this.state={
-            newsfeed: this.props.data.newsfeed,
-            username: this.props.data.username
-        }
     }
 
     renderNewsFeed() {
-        return this.state.newsfeed.map((post => {
+        return this.props.newsfeed.map((post => {
             return (
                 <li
                     key={post.content}
@@ -41,6 +36,6 @@ class NewsFeed extends Component {
     }
 }
 
-const mapStateToProps = state => ({data:state})
+const mapStateToProps = state => ({newsfeed: state.newsfeed, username: state.username})
 
 export default connect(mapStateToProps)(NewsFeed)

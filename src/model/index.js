@@ -14,6 +14,8 @@ import {initialNewsFeed} from './newsfeed'
 import {initialFriends} from './friendslist'
 import {users} from './users'
 
+import * as _ from 'lodash';
+
 let initialState = {
   error: '',
   username: 'Jessie Smith',
@@ -45,18 +47,28 @@ function model(state = initialState, action) {
       })
 
     case NEW_POST:
+            // this.state.wall.unshift(this.state.newPost)
+        // this.setState({newsfeed: this.state.newsfeed.unshift(this.state.newPost)})
+
+      let newPost = {
+        content: action.content, 
+        user: action.user, 
+        wallUsername: action.wallUsername
+      };
+      // debugger;
+    
+      let newWall = _.clone(state.wall);
+      let newNewsfeed = _.clone(state.newsfeed);
+      newWall.unshift(newPost);
+      newNewsfeed.unshift(newPost);
     return Object.assign({}, state, {
-        wall: state.wall
+          wall: newWall,
+          newsfeed: newNewsfeed,
     })
 
     case SET_WALL_USERNAME:
     return Object.assign({}, state, {
         wallUsername: state.wallUsername
-    })
-
-    case UPDATE_NEWSFEED:
-    return Object.assign({}, state, {
-        newsfeed: state.newsFeed
     })
 
     case UPDATE_FRIENDS:
