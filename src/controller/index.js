@@ -20,8 +20,8 @@ import {
       return {type: SET_PASSWORD, key}
     }
 
-    export function setAuth() {
-      return {type: SET_AUTH}
+    export function setAuth(UIusername, UIpassword) {
+      return {type: SET_AUTH, username: UIusername, password: UIpassword}
     }
 
     export function newPost(dataFromUI) {

@@ -16,13 +16,19 @@ class Login extends Component {
       wallUsername: this.props.wallUsername,
       wall: this.props.wall,
       newsfeed: this.props.newsfeed
+      // errorLoggingIn: false
     }
+
+    let errorLoggingIn = false
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
     this.createWallUsername = this.createWallUsername.bind(this)
+    this.errorHelper = this.errorHelper.bind(this)
+    this.errorMessage = this.errorMessage.bind(this)
   }
+  
 
   createWallUsername() {
     this.setState({wallUsername: this.state.username});
@@ -39,12 +45,25 @@ class Login extends Component {
   handleLogin(event) {
     event.preventDefault();
     this.createWallUsername();
-    this.props.dispatch(setAuth())
-    this.props.dispatch(setUsername(this.state.username));
-    this.props.dispatch(setPassword(this.state.password));
+    this.props.dispatch(setAuth(this.state.username, this.state.password))
     this.props.dispatch(setWallUsername(this.state.wallUsername));
+    if(this.props.loggedIn == false) {
+      this.errorLoggingIn = true
+    }
     console.log('Initial Wall: ', this.state.wall)
     console.log('Initial Newsfeed: ', this.state.newsfeed)
+  }
+
+  errorHelper() {
+    console.log('in error helper...')
+    this.errorLoggingIn = false
+  }
+
+  errorMessage() {
+    if(this.errorLoggingIn == true) {
+      this.errorHelper()
+      return <div style={{color:'red'}}>Invalid username and/or password</div>
+    }
   }
 
   renderLogin() {
@@ -76,6 +95,7 @@ class Login extends Component {
           Login
         </Button>
         </form>
+        {this.errorMessage()}
       </div>
       );
   }
@@ -100,8 +120,6 @@ class Login extends Component {
 
 const mapStateToProps = state => ({
   loggedIn: state.loggedIn,
-  username: state.username,
-  password: state.password,
   wallUsername: state.wallUsername,
   wall: state.wall,
   newsfeed: state.newsfeed

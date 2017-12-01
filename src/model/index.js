@@ -45,9 +45,11 @@ function model(state = initialState, action) {
       })
 
     case SET_AUTH:
-    return Object.assign({}, state, {
-        loggedIn: !state.loggedIn
-      })
+    if(action.username == state.username && action.password == state.password) {
+      return Object.assign({}, state, {
+          loggedIn: !state.loggedIn
+        })
+    }
 
     case NEW_POST:
       let newPost = {
@@ -67,7 +69,6 @@ function model(state = initialState, action) {
     })
 
     case NEW_GENERIC_POST:
-    console.log('this will set on friends to true')
       let newGenericPost = {
         content: action.content, 
         user: action.user, 
@@ -75,7 +76,6 @@ function model(state = initialState, action) {
       };
     newNewsfeed = _.clone(state.newsfeed);
     newNewsfeed.unshift(newGenericPost);
-    console.log('SOOO THIS IS IN THE ACTION ITS THE STATE ', state)
     return Object.assign({}, state, {
           newsfeed: newNewsfeed,
           wallUsername: state.wallUsername,
@@ -93,7 +93,6 @@ function model(state = initialState, action) {
     })
 
     case SET_ON_GENERIC_WALL:
-    console.log('IN THE ACTION FOR ON GENERIC WALL', action.wallUsername)
     return Object.assign({}, state, {
       onFriends : false,
       wallUsername: action.wallUsername

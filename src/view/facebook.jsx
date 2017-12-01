@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Profile from './profile';
+import { Button } from 'react-bootstrap';
+import {setAuth} from '../controller';
 // import SearchBar from './search-bar';
 
 class Facebook extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      username: this.props.username,
-    }
+    this.handleLogout = this.handleLogout.bind(this)
 
   }
 
-  friendSearch() {
+  handleLogout(event) {
+    console.log('HERE', this.props)
+    event.preventDefault();
+    this.props.dispatch(setAuth(this.props.data.username, this.props.data.password))
   }
  
  
@@ -22,7 +25,21 @@ class Facebook extends Component {
     return (
       <div className='container'>
         <div className='row topRow'>
-            <h2 style={{textAlign:'center', backgroundColor:'#3b5998', color:'#fff'}}>Facebook</h2>
+          <div className='col'>
+            <h2 style={{textAlign:'center', backgroundColor:'#3b5998', color:'#fff'}}>
+            Facebook
+            </h2>
+          </div>
+          <div className='col'>
+            <div style={{right:'0', color:'#000', height:'5vh'}}>
+              <Button 
+                style={{position:'absolute', right:'0', marginRight:'10vw'}}
+                className='btn btn-info'
+                onClick={this.handleLogout}
+                >
+                Log Out</Button>
+            </div>
+          </div>
         </div>
         <hr/>
         <div className='row'>

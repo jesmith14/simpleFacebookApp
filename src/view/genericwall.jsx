@@ -24,12 +24,11 @@ class GenericWall extends Component {
     render() {
         return (
             <div className='wall'>
-                <h4 style={{ textAlign:'center'}}>Wall:</h4>
-                <div className='wallPosts'>
+                {/* <div className='wallPosts'>
                         {this.renderWall()}
-                </div>
-                <div>
-                    <strong><p style={{marginLeft:'10px', marginTop:'10px', textAlign:'center'}}>Write on their Wall: </p></strong>
+                </div> */}
+                <div >
+                    <strong><p style={{marginLeft:'10px', marginTop:'10px', textAlign:'center'}}>'Friends' Wall: </p></strong>
                     <GenericPostDetail friendsWall={true} wallUsername={this.props.wallUsername}/>
                 </div>
             </div>
