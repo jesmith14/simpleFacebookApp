@@ -3,17 +3,19 @@ import { connect } from 'react-redux';
 import ProfilePicture from './profile-picture';
 import Wall from './wall';
 import NewsFeed from './newsfeed';
-import FriendsList from './friendslist';
+import FriendWalls from './friendwalls';
 
 class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          username: this.props.username
+          username: this.props.data.username,
+          onFriends: this.props.data.onFriends
         }
     }
 
     render() {
+      console.log('rednering the profile page', this.props)
         return (
             <div>
             <div className='row secondRow'>
@@ -27,7 +29,7 @@ class Profile extends Component {
             </div>
             <div className='row thirdRow'>
               <div style={{marginRight:'50px'}} className='col-sm-3'>
-                <FriendsList />
+                <FriendWalls />
               </div>
               <div style={{marginLeft:'50px'}} className='col-sm-7'>
                 <NewsFeed />

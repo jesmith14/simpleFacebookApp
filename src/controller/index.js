@@ -4,9 +4,11 @@ import {
     SET_PASSWORD,
     SET_AUTH,
     NEW_POST,
+    NEW_GENERIC_POST,
     SET_WALL_USERNAME,
     UPDATE_NEWSFEED,
-    UPDATE_FRIENDS
+    UPDATE_FRIENDS,
+    SET_ON_GENERIC_WALL
 
     } from './constants'
     
@@ -26,6 +28,10 @@ import {
       return {type: NEW_POST, content: dataFromUI.content, user: dataFromUI.user, wallUsername: dataFromUI.wallUsername};
     }
 
+    export function newGenericPost(dataFromUI) {
+      return {type: NEW_GENERIC_POST, content: dataFromUI.content, user: dataFromUI.user, wallUsername: dataFromUI.wallUsername};
+    }
+
     export function setWallUsername() {
       return {type: SET_WALL_USERNAME}
     }
@@ -36,4 +42,9 @@ import {
 
     export function updateFriends() {
       return {type: UPDATE_FRIENDS}
+    }
+
+    export function setOnGenericWall(dataFromUI) {
+      console.log('THIS IS THE DATA FROM THE UI', dataFromUI)
+      return {type: SET_ON_GENERIC_WALL, wallUsername: dataFromUI}
     }

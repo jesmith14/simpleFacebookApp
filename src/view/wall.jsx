@@ -30,7 +30,7 @@ class Wall extends Component {
     }
 
     render() {
-        console.log('in wall', this.state)
+        // console.log('in wall', this.state)
         return (
             <div className='wall'>
                 <h4 style={{ textAlign:'center'}}>Wall:</h4>
@@ -41,7 +41,7 @@ class Wall extends Component {
                 </div>
                 <div>
                     <strong><p style={{marginLeft:'10px', marginTop:'10px', textAlign:'center'}}>Write on {this.state.username}'s Wall: </p></strong>
-                    <PostDetail />
+                    <PostDetail wallUsername={this.state.wallUsername}/>
                 </div>
             </div>
         );

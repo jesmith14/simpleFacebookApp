@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {setWallUsername} from '../controller';
+import {setWallUsername, setOnGenericWall} from '../controller';
 import GenericWall from './genericwall'
 
 class FriendsList extends Component {
@@ -10,25 +10,24 @@ class FriendsList extends Component {
         this.state = {
             friends: this.props.friends,
             wallUsername: this.props.wallUsername,
-            genericWall: false
+            genericWall: false,
+            onFriends: this.props.onFriends
         }
 
         this.handleFriendClick = this.handleFriendClick.bind(this)
     }
 
+    handleFriendClick(event) {
+        event.preventDefault();
+        console.log('in friends list component, this is the onFriends before dispatch: ', this.props.onFriends)
+        let content = event.dispatchMarker.replace(/[^a-zA-Z ]/g, '')
+        console.log('****WAIT TLOOK HERE', content)
+        // let content = event.dispatchMarker.substring(22, event.dispatchMarker.length - 2)
+        // console.log('LOOK FOR THE USERNAME OF FRIEND', event.dispatchMarker.substring(22))
+        this.props.dispatch(setOnGenericWall(content))
+        // this.setState({genericWall: true})
+        // this.setState({wallUsername: event.key})   
 
-    handleFriendClick(friendUser) {
-        this.setState({genericWall: true})
-        this.setState({wallUsername: friendUser})
-        // this.props.dispatch(setWallUsername(this.state.wallUsername));
-    }
-
-    renderGenericWall() {
-        return (
-        <div>
-            <GenericWall wallUsername={this.state.wallUsername}/>
-        </div>
-        );
     }
 
     renderFriends() {
@@ -36,7 +35,7 @@ class FriendsList extends Component {
             return (
                 <li
                     key={friend.user}
-                    onClick={() => this.handleFriendClick(friend.user)}
+                    onClick={this.handleFriendClick}
                     className='list-group-item'>
                     <p>{friend.user}</p>
                 </li>
@@ -44,22 +43,14 @@ class FriendsList extends Component {
         }));
     }
 
-    renderFriendsorGenericWall() {
-        if(this.state.genericWall == true) {
-            return this.renderGenericWall();
-        } else {
-            return this.renderFriends();
-        }
-    }
-
     render() {
-        console.log('in friendslistrender', this.state)
+        console.log('in friends list component, this is the onFriends after dispatch: ', this.props.onFriends)        
         return (
             <div className='friendsList'>
                 <h4 style={{textAlign:'center'}}>Friends:</h4>
                 <div className='friendsListItem'>
                 <ul className='list-group'>
-                    {this.renderFriendsorGenericWall()}
+                    {this.renderFriends()}
                 </ul>
                 </div>
                 <div style={{height:'25px'}}>
@@ -69,6 +60,6 @@ class FriendsList extends Component {
     }
 }
 
-const mapStateToProps = state => ({wallUsername: state.wallUsername, friends: state.friends})
+const mapStateToProps = state => ({wallUsername: state.wallUsername, friends: state.friends, onFriends: state.onFriends})
 
 export default connect(mapStateToProps)(FriendsList)

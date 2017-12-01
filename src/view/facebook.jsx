@@ -14,7 +14,6 @@ class Facebook extends Component {
   }
 
   friendSearch() {
-    // console.log('friend search');
   }
  
  
@@ -23,7 +22,7 @@ class Facebook extends Component {
     return (
       <div className='container'>
         <div className='row topRow'>
-            <h2 style={{textAlign:'center'}}>Facebook</h2>
+            <h2 style={{textAlign:'center', backgroundColor:'#3b5998', color:'#fff'}}>Facebook</h2>
         </div>
         <hr/>
         <div className='row'>

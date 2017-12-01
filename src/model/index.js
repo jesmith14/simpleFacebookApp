@@ -4,9 +4,11 @@ import {
   SET_PASSWORD,
   SET_AUTH,
   NEW_POST,
+  NEW_GENERIC_POST,
   SET_WALL_USERNAME,
   UPDATE_NEWSFEED,
-  UPDATE_FRIENDS
+  UPDATE_FRIENDS,
+  SET_ON_GENERIC_WALL
 } from '../controller/constants'
 
 import {initialWall} from './wall'
@@ -25,7 +27,8 @@ let initialState = {
   wallUsername: '',
   newsfeed: initialNewsFeed,
   friends: initialFriends,
-  users: users
+  users: users,
+  onFriends: true
 }
 
 function model(state = initialState, action) {
@@ -47,23 +50,36 @@ function model(state = initialState, action) {
       })
 
     case NEW_POST:
-            // this.state.wall.unshift(this.state.newPost)
-        // this.setState({newsfeed: this.state.newsfeed.unshift(this.state.newPost)})
-
       let newPost = {
         content: action.content, 
         user: action.user, 
         wallUsername: action.wallUsername
       };
-      // debugger;
     
       let newWall = _.clone(state.wall);
       let newNewsfeed = _.clone(state.newsfeed);
       newWall.unshift(newPost);
       newNewsfeed.unshift(newPost);
+
     return Object.assign({}, state, {
           wall: newWall,
           newsfeed: newNewsfeed,
+    })
+
+    case NEW_GENERIC_POST:
+    console.log('this will set on friends to true')
+      let newGenericPost = {
+        content: action.content, 
+        user: action.user, 
+        wallUsername: action.wallUsername
+      };
+    newNewsfeed = _.clone(state.newsfeed);
+    newNewsfeed.unshift(newGenericPost);
+    console.log('SOOO THIS IS IN THE ACTION ITS THE STATE ', state)
+    return Object.assign({}, state, {
+          newsfeed: newNewsfeed,
+          wallUsername: state.wallUsername,
+          onFriends: true
     })
 
     case SET_WALL_USERNAME:
@@ -76,6 +92,13 @@ function model(state = initialState, action) {
         friends : state.friends
     })
 
+    case SET_ON_GENERIC_WALL:
+    console.log('IN THE ACTION FOR ON GENERIC WALL', action.wallUsername)
+    return Object.assign({}, state, {
+      onFriends : false,
+      wallUsername: action.wallUsername
+    })
+  
     default:
       return state
   }

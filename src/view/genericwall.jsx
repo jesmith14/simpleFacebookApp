@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PostDetail from './post-detail';
+import GenericPostDetail from './genericpost-detail';
 import { setWallUsername } from '../controller/index.js';
 
 class GenericWall extends Component {
@@ -14,7 +14,7 @@ class GenericWall extends Component {
     }
 
     renderWall() {
-        console.log('RENDERING GENERIC WALL!', this.state)
+        // console.log('RENDERING GENERIC WALL!', this.state)
         // this.setState({wallUsername: this.props.user})
        return(
             <div id='genericwall'></div>
@@ -29,8 +29,8 @@ class GenericWall extends Component {
                         {this.renderWall()}
                 </div>
                 <div>
-                    <strong><p style={{marginLeft:'10px', marginTop:'10px', textAlign:'center'}}>Write on {this.props.wallUsername}'s Wall: </p></strong>
-                    <PostDetail wallUsername={this.props.wallUsername}/>
+                    <strong><p style={{marginLeft:'10px', marginTop:'10px', textAlign:'center'}}>Write on their Wall: </p></strong>
+                    <GenericPostDetail friendsWall={true} wallUsername={this.props.wallUsername}/>
                 </div>
             </div>
         );

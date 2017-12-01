@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {newPost, updateNewsfeed} from '../controller'
+import {newGenericPost, updateNewsfeed, setOnGenericWall} from '../controller'
 
-class PostDetail extends Component {
+class GenericPostDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            wall: this.props.wall,
             newPost: '',
             newWall: this.props.wall,
             username: this.props.username,
             newsfeed: this.props.newsfeed,
-            wallUsername: this.props.wallUsername,
             friendsWall: this.props.friendsWall
         }
 
@@ -22,12 +20,13 @@ class PostDetail extends Component {
     
 
     handleNewPost(event) {
-        this.props.dispatch(newPost(this.state.newPost));
+        this.props.dispatch(newGenericPost(this.state.newPost));
         this.inputTitle.value = "";
     }
 
     handlePostChange(event) {
-        let newestPost = {content: event.target.value, user: this.state.username, wallUsername: this.state.wallUsername}
+        console.log('generic post detail: ', this.props)
+        let newestPost = {content: event.target.value, user: this.state.username, wallUsername: this.props.wallUsername}
         this.setState({newPost: newestPost});
     }
 
@@ -48,5 +47,5 @@ class PostDetail extends Component {
 
 }
 
-const mapStateToProps = state => ({wall: state.wall, username: state.username, newsfeed: state.newsfeed})
-export default connect(mapStateToProps)(PostDetail);
+const mapStateToProps = state => ({username: state.username, newsfeed: state.newsfeed, wallUsername: state.wallUsername})
+export default connect(mapStateToProps)(GenericPostDetail);
