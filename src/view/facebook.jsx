@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Profile from './profile';
 import { Button } from 'react-bootstrap';
-import {setAuth} from '../controller';
+import {setAuth, setErrorFalse} from '../controller';
 // import SearchBar from './search-bar';
 
 class Facebook extends Component {
@@ -14,8 +14,8 @@ class Facebook extends Component {
   }
 
   handleLogout(event) {
-    console.log('HERE', this.props)
     event.preventDefault();
+    this.props.dispatch(setErrorFalse())
     this.props.dispatch(setAuth(this.props.data.username, this.props.data.password))
   }
  

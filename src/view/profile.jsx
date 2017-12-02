@@ -15,7 +15,6 @@ class Profile extends Component {
     }
 
     render() {
-      console.log('rednering the profile page', this.props)
         return (
             <div>
             <div className='row secondRow'>

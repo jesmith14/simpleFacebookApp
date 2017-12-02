@@ -19,9 +19,7 @@ class FriendsList extends Component {
 
     handleFriendClick(event) {
         event.preventDefault();
-        console.log('in friends list component, this is the onFriends before dispatch: ', this.props.onFriends)
         let content = event.dispatchMarker.replace(/[^a-zA-Z ]/g, '')
-        console.log('****WAIT TLOOK HERE', content)
         // let content = event.dispatchMarker.substring(22, event.dispatchMarker.length - 2)
         // console.log('LOOK FOR THE USERNAME OF FRIEND', event.dispatchMarker.substring(22))
         this.props.dispatch(setOnGenericWall(content))
@@ -44,7 +42,6 @@ class FriendsList extends Component {
     }
 
     render() {
-        console.log('in friends list component, this is the onFriends after dispatch: ', this.props.onFriends)        
         return (
             <div className='friendsList'>
                 <h4 style={{textAlign:'center'}}>Friends:</h4>

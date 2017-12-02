@@ -11,17 +11,14 @@ class FriendWalls extends Component {
 
     renderFriendsOrWall() {
         if(this.props.onFriends == true) {
-            console.log('alright are we rendering here')
             return <FriendsList />
         }
         else {
-            console.log('ABOUT TO RENDER GENERIC WALL')
             return <GenericWall />
         }
     }
 
     render() {
-        console.log('rendering in friendwalls comp. The onFriends state is: ', this.props.onFriends)
         return(
             <div>
                 {this.renderFriendsOrWall()}

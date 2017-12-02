@@ -30,7 +30,6 @@ class Wall extends Component {
     }
 
     render() {
-        // console.log('in wall', this.state)
         return (
             <div className='wall'>
                 <h4 style={{ textAlign:'center'}}>Wall:</h4>

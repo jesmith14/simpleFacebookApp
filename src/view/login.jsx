@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
-import {setAuth, setUsername, setPassword, setWallUsername} from '../controller'
+import {setAuth, setUsername, setPassword, setWallUsername, setErrorTrue} from '../controller'
 import Facebook from './facebook'
 
 
@@ -15,23 +15,20 @@ class Login extends Component {
       password: this.props.password,
       wallUsername: this.props.wallUsername,
       wall: this.props.wall,
-      newsfeed: this.props.newsfeed
-      // errorLoggingIn: false
+      newsfeed: this.props.newsfeed,
+      errorLoggingIn: this.props.errorLoggingIn
     }
-
-    let errorLoggingIn = false
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
     this.createWallUsername = this.createWallUsername.bind(this)
-    this.errorHelper = this.errorHelper.bind(this)
     this.errorMessage = this.errorMessage.bind(this)
   }
   
 
   createWallUsername() {
-    this.setState({wallUsername: this.state.username});
+    this.setState({wallUsername: event.target.value});
   } 
 
   handlePasswordChange(event) {
@@ -40,6 +37,7 @@ class Login extends Component {
 
   handleUsernameChange(event) {
     this.setState({username: event.target.value});
+    this.createWallUsername(event)
   }
 
   handleLogin(event) {
@@ -48,25 +46,20 @@ class Login extends Component {
     this.props.dispatch(setAuth(this.state.username, this.state.password))
     this.props.dispatch(setWallUsername(this.state.wallUsername));
     if(this.props.loggedIn == false) {
-      this.errorLoggingIn = true
+      this.props.dispatch(setErrorTrue())
     }
     console.log('Initial Wall: ', this.state.wall)
     console.log('Initial Newsfeed: ', this.state.newsfeed)
   }
 
-  errorHelper() {
-    console.log('in error helper...')
-    this.errorLoggingIn = false
-  }
-
   errorMessage() {
-    if(this.errorLoggingIn == true) {
-      this.errorHelper()
+    if(this.props.errorLoggingIn == true) {
       return <div style={{color:'red'}}>Invalid username and/or password</div>
     }
   }
 
   renderLogin() {
+    console.log('IN LOGIN, ERRORLOGGING IN: ', this.props.errorLoggingIn)
       return(
     <div
       style={{
@@ -122,7 +115,8 @@ const mapStateToProps = state => ({
   loggedIn: state.loggedIn,
   wallUsername: state.wallUsername,
   wall: state.wall,
-  newsfeed: state.newsfeed
+  newsfeed: state.newsfeed,
+  errorLoggingIn: state.errorLoggingIn
 })
 
 export default connect(mapStateToProps)(Login)

@@ -8,7 +8,9 @@ import {
     SET_WALL_USERNAME,
     UPDATE_NEWSFEED,
     UPDATE_FRIENDS,
-    SET_ON_GENERIC_WALL
+    SET_ON_GENERIC_WALL,
+    SET_ERROR_TRUE,
+    SET_ERROR_FALSE
 
     } from './constants'
     
@@ -45,6 +47,13 @@ import {
     }
 
     export function setOnGenericWall(dataFromUI) {
-      console.log('THIS IS THE DATA FROM THE UI', dataFromUI)
       return {type: SET_ON_GENERIC_WALL, wallUsername: dataFromUI}
+    }
+
+    export function setErrorTrue() {
+      return {type: SET_ERROR_TRUE}
+    }
+
+    export function setErrorFalse() {
+      return {type: SET_ERROR_FALSE}
     }

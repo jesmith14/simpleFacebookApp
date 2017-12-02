@@ -8,7 +8,9 @@ import {
   SET_WALL_USERNAME,
   UPDATE_NEWSFEED,
   UPDATE_FRIENDS,
-  SET_ON_GENERIC_WALL
+  SET_ON_GENERIC_WALL,
+  SET_ERROR_FALSE,
+  SET_ERROR_TRUE
 } from '../controller/constants'
 
 import {initialWall} from './wall'
@@ -28,7 +30,8 @@ let initialState = {
   newsfeed: initialNewsFeed,
   friends: initialFriends,
   users: users,
-  onFriends: true
+  onFriends: true,
+  errorLoggingIn: false
 }
 
 function model(state = initialState, action) {
@@ -47,7 +50,9 @@ function model(state = initialState, action) {
     case SET_AUTH:
     if(action.username == state.username && action.password == state.password) {
       return Object.assign({}, state, {
-          loggedIn: !state.loggedIn
+          loggedIn: !state.loggedIn,
+          username: state.username,
+          wallUsername: state.username
         })
     }
 
@@ -96,6 +101,17 @@ function model(state = initialState, action) {
     return Object.assign({}, state, {
       onFriends : false,
       wallUsername: action.wallUsername
+    })
+
+    case SET_ERROR_FALSE:
+    console.log('SETTING THE ERROR TO FALSE', state.errorLoggingIn)
+    return Object.assign({}, state, {
+      errorLoggingIn: false
+    })
+
+    case SET_ERROR_TRUE:
+    return Object.assign({}, state, {
+      errorLoggingIn: true
     })
   
     default:
