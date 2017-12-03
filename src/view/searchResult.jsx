@@ -9,11 +9,12 @@ class SearchResult extends Component {
 
     renderSearchResult() {
         if(this.props.searchTerm != '') {
-            console.log('AY LOOK HERE' , this.props)
             let searchedResults = []
             this.props.users.map((user => {
                 console.log('this is the user', user.user)
-                if(user.user.includes(this.props.searchTerm)) {
+                console.log('this is the search term', this.props.searchTerm)
+                if(user.user.toUpperCase().includes(this.props.searchTerm.toUpperCase())) {
+                    console.log('pushing ', user.user)
                     searchedResults.push(user.user)
                 }
             }))
