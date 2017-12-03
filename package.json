@@ -1,5 +1,5 @@
 {
-  "name": "Simple Facebook App",
+  "name": "redux-simple-starter",
   "version": "1.0.0",
   "description": "Simple Facebook app using MVC in react redux",
   "main": "index.js",

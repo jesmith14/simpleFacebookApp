@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {setOnGenericWall, setWallUsername} from '../controller';
+import {setOnGenericWall, setWallUsername, setPhotoURL} from '../controller';
 import GenericWall from './genericwall';
 
 class FriendsList extends Component {
@@ -18,11 +18,18 @@ class FriendsList extends Component {
     }
 
     handleFriendClick(event) {
+        let newURL;
         event.preventDefault();
         let content = event.dispatchMarker.replace(/[^a-zA-Z ]/g, '')
+        for(let i = 0; i < this.props.users.length; i++) {
+            if(this.props.users[i].user === content){
+                newURL = this.props.users[i].photoURL
+            }
+        }
         // let content = event.dispatchMarker.substring(22, event.dispatchMarker.length - 2)
         // console.log('LOOK FOR THE USERNAME OF FRIEND', event.dispatchMarker.substring(22))
         this.props.dispatch(setWallUsername(content))
+        this.props.dispatch(setPhotoURL(newURL))
         this.props.dispatch(setOnGenericWall(content))
         // this.setState({genericWall: true})
         // this.setState({wallUsername: event.key})   
