@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Profile from './profile';
 import { Button } from 'react-bootstrap';
 import {setAuth, setErrorFalse} from '../controller';
-// import SearchBar from './search-bar';
+import SearchBar from './searchbar';
+import SearchResult from './searchResult';
 
 class Facebook extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Facebook extends Component {
           <div className='col'>
             <div style={{right:'0', color:'#000', height:'5vh'}}>
               <Button 
-                style={{position:'absolute', right:'0', marginRight:'10vw'}}
+                style={{position:'absolute', right:'0', marginRight:'15vw'}}
                 className='btn btn-info'
                 onClick={this.handleLogout}
                 >
@@ -42,9 +43,11 @@ class Facebook extends Component {
           </div>
         </div>
         <hr/>
+        <div className='row searchRow'>
+          <SearchBar/>
+          <SearchResult/>
+        </div>
         <div className='row'>
-          
-          {/* <SearchBar className='searchbar' onSearchTermChange={this.friendSearch()} /> */}
         </div>
         <Profile />
       </div>

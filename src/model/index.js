@@ -10,7 +10,8 @@ import {
   UPDATE_FRIENDS,
   SET_ON_GENERIC_WALL,
   SET_ERROR_FALSE,
-  SET_ERROR_TRUE
+  SET_ERROR_TRUE,
+  UPDATE_SEARCH_TERM
 } from '../controller/constants'
 
 import {initialWall} from './wall'
@@ -31,7 +32,8 @@ let initialState = {
   friends: initialFriends,
   users: users,
   onFriends: true,
-  errorLoggingIn: false
+  errorLoggingIn: false,
+  searchTerm: ''
 }
 
 function model(state = initialState, action) {
@@ -112,6 +114,11 @@ function model(state = initialState, action) {
     case SET_ERROR_TRUE:
     return Object.assign({}, state, {
       errorLoggingIn: true
+    })
+
+    case UPDATE_SEARCH_TERM:
+    return Object.assign({}, state, {
+      searchTerm: action.searchTerm
     })
   
     default:
