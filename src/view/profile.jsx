@@ -4,6 +4,7 @@ import ProfilePicture from './profile-picture';
 import Wall from './wall';
 import NewsFeed from './newsfeed';
 import FriendWalls from './friendwalls';
+import FollowUnfollow from './followUnfollow'
 
 class Profile extends Component {
     constructor(props) {
@@ -30,11 +31,13 @@ class Profile extends Component {
     }
 
     renderWall() {
-      // if(this.props.onFriendsProfile == true) {
-      // }
-      // else {
-        return <Wall wallUsername={this.props.wallUsername} onFriendsProfile={this.props.onFriendsProfile}/>
-      // }
+      for(let i = 0; i < this.props.data.users.length; i++) {
+        if(this.props.data.users[i].user === this.props.wallUsername) {
+          if(this.props.data.users[i].following == true) {
+            return <Wall wallUsername={this.props.wallUsername} onFriendsProfile={this.props.onFriendsProfile}/>
+          }
+        }
+      }
     }
  
     render() {
@@ -44,6 +47,7 @@ class Profile extends Component {
               <div style={{marginRight:'50px'}} className='col-sm-3'>
                 <h4 >{this.props.wallUsername}</h4>
                 <ProfilePicture pictureURL={this.props.photoURL}/>
+                <FollowUnfollow wallUsername={this.props.wallUsername}/>
               </div>
               <div style={{marginLeft:'50px', border:'2 px solid black'}} className='col-sm-7'>
                 {this.renderWall()}

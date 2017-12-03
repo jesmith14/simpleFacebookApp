@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {setOnGenericWall} from '../controller';
+import {setOnGenericWall, setWallUsername} from '../controller';
 import GenericWall from './genericwall';
 
 class FriendsList extends Component {
@@ -8,7 +8,7 @@ class FriendsList extends Component {
         super(props);
 
         this.state = {
-            friends: this.props.friends,
+            // friends: this.props.friends,
             wallUsername: this.props.wallUsername,
             genericWall: false,
             onFriends: this.props.onFriends
@@ -22,6 +22,7 @@ class FriendsList extends Component {
         let content = event.dispatchMarker.replace(/[^a-zA-Z ]/g, '')
         // let content = event.dispatchMarker.substring(22, event.dispatchMarker.length - 2)
         // console.log('LOOK FOR THE USERNAME OF FRIEND', event.dispatchMarker.substring(22))
+        this.props.dispatch(setWallUsername(content))
         this.props.dispatch(setOnGenericWall(content))
         // this.setState({genericWall: true})
         // this.setState({wallUsername: event.key})   
@@ -29,15 +30,17 @@ class FriendsList extends Component {
     }
 
     renderFriends() {
-        return this.state.friends.map((friend => {
-            return (
-                <li
-                    key={friend.user}
-                    onClick={this.handleFriendClick}
-                    className='list-group-item'>
-                    <p>{friend.user}</p>
-                </li>
-            );
+        return this.props.users.map((user => {
+            if(user.following == true && user.user !== this.props.username) {
+                return (
+                    <li
+                        key={user.user}
+                        onClick={this.handleFriendClick}
+                        className='list-group-item'>
+                        <p>{user.user}</p>
+                    </li>
+                );
+            }
         }));
     }
 
@@ -57,6 +60,6 @@ class FriendsList extends Component {
     }
 }
 
-const mapStateToProps = state => ({wallUsername: state.wallUsername, friends: state.friends, onFriends: state.onFriends})
+const mapStateToProps = state => ({wallUsername: state.wallUsername, friends: state.friends, onFriends: state.onFriends, users: state.users, username: state.username})
 
 export default connect(mapStateToProps)(FriendsList)

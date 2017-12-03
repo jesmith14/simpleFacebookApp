@@ -11,7 +11,9 @@ import {
     SET_ERROR_TRUE,
     SET_ERROR_FALSE,
     UPDATE_SEARCH_TERM,
-    SET_PHOTO_URL
+    SET_PHOTO_URL,
+    SET_FOLLOWING,
+    SET_UNFOLLOWING
 } from './constants'
     
 export function setUsername(key) {
@@ -64,4 +66,12 @@ export function updateSearchTerm(dataFromUI) {
 
 export function setPhotoURL(dataFromUI) {
   return {type: SET_PHOTO_URL, newURL: dataFromUI}
+}
+
+export function setFollowing(dataFromUI) {
+  return {type: SET_FOLLOWING, currentUser: dataFromUI}
+}
+
+export function setUnFollowing(dataFromUI) {
+  return {type: SET_UNFOLLOWING, currentUser: dataFromUI}
 }

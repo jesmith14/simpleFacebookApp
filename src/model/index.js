@@ -12,7 +12,9 @@ import {
   SET_ERROR_FALSE,
   SET_ERROR_TRUE,
   UPDATE_SEARCH_TERM,
-  SET_PHOTO_URL
+  SET_PHOTO_URL,
+  SET_FOLLOWING,
+  SET_UNFOLLOWING
 } from '../controller/constants'
 
 import {initialWall} from './wall'
@@ -124,6 +126,30 @@ function model(state = initialState, action) {
     case SET_PHOTO_URL:
     return Object.assign({}, state, {
       photoURL: action.newURL
+    })
+
+    case SET_FOLLOWING:
+    let thisUser = action.currentUser
+    let newUsers = _.clone(state.users);
+    for(let i = 0; i < newUsers.length; i++) {
+      if(newUsers[i].user === thisUser) {
+        newUsers[i].following = true
+      }
+    }
+    return Object.assign({}, state, {
+      users: newUsers
+    })
+
+    case SET_UNFOLLOWING:
+    let thisUser2 = action.currentUser
+    let newUsers2 = _.clone(state.users);
+    for(let i = 0; i < newUsers2.length; i++) {
+      if(newUsers2[i].user === thisUser2) {
+        newUsers2[i].following = false
+      }
+    }
+    return Object.assign({}, state, {
+      users: newUsers2
     })
   
     default:
