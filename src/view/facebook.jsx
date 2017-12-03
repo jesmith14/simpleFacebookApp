@@ -9,6 +9,7 @@ import SearchResult from './searchResult';
 class Facebook extends Component {
   constructor(props) {
     super(props);
+    
 
     this.handleLogout = this.handleLogout.bind(this)
 
@@ -19,10 +20,18 @@ class Facebook extends Component {
     this.props.dispatch(setErrorFalse())
     this.props.dispatch(setAuth(this.props.data.username, this.props.data.password))
   }
+
+  changeWall() {
+    
+  }
  
  
  
   render() {
+    let onFriendsProfile = false
+    if(this.props.data.username !== this.props.data.wallUsername) {
+      onFriendsProfile = true
+    }
     return (
       <div className='container'>
         <div className='row topRow'>
@@ -49,7 +58,7 @@ class Facebook extends Component {
         </div>
         <div className='row'>
         </div>
-        <Profile />
+        <Profile photoURL={this.props.data.photoURL} wallUsername={this.props.wallUsername} onFriendsProfile={onFriendsProfile}/>
       </div>
     );
   }

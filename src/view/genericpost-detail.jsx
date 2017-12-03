@@ -8,7 +8,6 @@ class GenericPostDetail extends Component {
         this.state = {
             newPost: '',
             newWall: this.props.wall,
-            username: this.props.username,
             newsfeed: this.props.newsfeed,
             friendsWall: this.props.friendsWall
         }
@@ -25,8 +24,9 @@ class GenericPostDetail extends Component {
     }
 
     handlePostChange(event) {
-        console.log('generic post detail: ', this.props)
-        let newestPost = {content: event.target.value, user: this.state.username, wallUsername: this.props.wallUsername}
+        console.log('IN THE NEW POST: username', this.props.username)
+        console.log('IN THE NEW POST: wall username', this.props.wallUsername)
+        let newestPost = {content: event.target.value, user: this.props.username, wallUsername: this.props.wallUsername}
         this.setState({newPost: newestPost});
     }
 

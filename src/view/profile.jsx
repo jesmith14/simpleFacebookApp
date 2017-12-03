@@ -10,28 +10,51 @@ class Profile extends Component {
         super(props);
         this.state = {
           username: this.props.data.username,
-          onFriends: this.props.data.onFriends
+          onFriends: this.props.data.onFriends,
         }
     }
 
+    //props - pictureURL, wallusername
+    //in here - render function that has ifUser = redux state.username
+
+    renderFriendWalls() {
+      if(this.props.data.wallUsername === this.props.data.username) {
+        return <FriendWalls />
+      }
+    }
+
+    renderNewsFeed() {
+      if(this.props.data.wallUsername === this.props.data.username) {
+        return <NewsFeed />
+      }
+    }
+
+    renderWall() {
+      // if(this.props.onFriendsProfile == true) {
+      // }
+      // else {
+        return <Wall wallUsername={this.props.wallUsername} onFriendsProfile={this.props.onFriendsProfile}/>
+      // }
+    }
+ 
     render() {
         return (
             <div>
             <div className='row secondRow'>
               <div style={{marginRight:'50px'}} className='col-sm-3'>
-                <h4 >{this.props.data.username}</h4>
-                <ProfilePicture />
+                <h4 >{this.props.wallUsername}</h4>
+                <ProfilePicture pictureURL={this.props.photoURL}/>
               </div>
               <div style={{marginLeft:'50px', border:'2 px solid black'}} className='col-sm-7'>
-                <Wall />
+                {this.renderWall()}
               </div>
             </div>
             <div className='row thirdRow'>
               <div style={{marginRight:'50px'}} className='col-sm-3'>
-                <FriendWalls />
+                {this.renderFriendWalls()}
               </div>
               <div style={{marginLeft:'50px'}} className='col-sm-7'>
-                <NewsFeed />
+                {this.renderNewsFeed()}
               </div>
             </div>
             </div>

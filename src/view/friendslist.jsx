@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {setWallUsername, setOnGenericWall} from '../controller';
-import GenericWall from './genericwall'
+import {setOnGenericWall} from '../controller';
+import GenericWall from './genericwall';
 
 class FriendsList extends Component {
     constructor(props) {

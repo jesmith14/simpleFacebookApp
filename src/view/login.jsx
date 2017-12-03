@@ -16,7 +16,8 @@ class Login extends Component {
       wallUsername: this.props.wallUsername,
       wall: this.props.wall,
       newsfeed: this.props.newsfeed,
-      errorLoggingIn: this.props.errorLoggingIn
+      errorLoggingIn: this.props.errorLoggingIn,
+      photoURL: this.props.photoURL
     }
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
@@ -44,7 +45,7 @@ class Login extends Component {
     event.preventDefault();
     this.createWallUsername();
     this.props.dispatch(setAuth(this.state.username, this.state.password))
-    this.props.dispatch(setWallUsername(this.state.wallUsername));
+    // this.props.dispatch(setWallUsername(this.state.wallUsername));
     if(this.props.loggedIn == false) {
       this.props.dispatch(setErrorTrue())
     }
@@ -59,7 +60,6 @@ class Login extends Component {
   }
 
   renderLogin() {
-    console.log('IN LOGIN, ERRORLOGGING IN: ', this.props.errorLoggingIn)
       return(
     <div
       style={{
@@ -95,7 +95,7 @@ class Login extends Component {
 
   renderFacebook() {
       if(this.props.loggedIn == true) {
-            return <Facebook />
+            return <Facebook photoURL={this.state.photoURL} wallUsername={this.props.wallUsername}/>
       }
       else {
         return (this.renderLogin());
@@ -116,7 +116,8 @@ const mapStateToProps = state => ({
   wallUsername: state.wallUsername,
   wall: state.wall,
   newsfeed: state.newsfeed,
-  errorLoggingIn: state.errorLoggingIn
+  errorLoggingIn: state.errorLoggingIn,
+  photoURL: state.photoURL
 })
 
 export default connect(mapStateToProps)(Login)

@@ -10,7 +10,8 @@ import {
     SET_ON_GENERIC_WALL,
     SET_ERROR_TRUE,
     SET_ERROR_FALSE,
-    UPDATE_SEARCH_TERM
+    UPDATE_SEARCH_TERM,
+    SET_PHOTO_URL
 } from './constants'
     
 export function setUsername(key) {
@@ -33,8 +34,8 @@ export function newGenericPost(dataFromUI) {
   return {type: NEW_GENERIC_POST, content: dataFromUI.content, user: dataFromUI.user, wallUsername: dataFromUI.wallUsername};
 }
 
-export function setWallUsername() {
-  return {type: SET_WALL_USERNAME}
+export function setWallUsername(dataFromUI) {
+  return {type: SET_WALL_USERNAME, newWallUsername: dataFromUI}
 }
 
 export function updateNewsfeed() {
@@ -59,4 +60,8 @@ export function setErrorFalse() {
 
 export function updateSearchTerm(dataFromUI) {
   return {type: UPDATE_SEARCH_TERM, searchTerm: dataFromUI}
+}
+
+export function setPhotoURL(dataFromUI) {
+  return {type: SET_PHOTO_URL, newURL: dataFromUI}
 }

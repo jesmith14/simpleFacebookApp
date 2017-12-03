@@ -11,7 +11,6 @@ class SearchBar extends Component{
     }
 
     onInputChange(event) {
-        console.log('IN SEARCH BAR ', event.target.value)
         this.props.dispatch(updateSearchTerm(event.target.value))
     }
   

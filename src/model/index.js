@@ -11,7 +11,8 @@ import {
   SET_ON_GENERIC_WALL,
   SET_ERROR_FALSE,
   SET_ERROR_TRUE,
-  UPDATE_SEARCH_TERM
+  UPDATE_SEARCH_TERM,
+  SET_PHOTO_URL
 } from '../controller/constants'
 
 import {initialWall} from './wall'
@@ -27,21 +28,21 @@ let initialState = {
   password: '1234',
   loggedIn: false,
   wall: initialWall,
-  wallUsername: '',
+  wallUsername: 'Jessie Smith',
   newsfeed: initialNewsFeed,
   friends: initialFriends,
   users: users,
   onFriends: true,
   errorLoggingIn: false,
-  searchTerm: ''
+  searchTerm: '',
+  photoURL: 'https://pbs.twimg.com/profile_images/764226754722471936/Gga2mirv_400x400.jpg'
 }
 
 function model(state = initialState, action) {
   switch (action.type) {
     case SET_USERNAME:
       return Object.assign({}, state, {
-        username: action.key,
-        wallUsername: action.key
+        username: action.key
       })
 
     case SET_PASSWORD:
@@ -91,7 +92,7 @@ function model(state = initialState, action) {
 
     case SET_WALL_USERNAME:
     return Object.assign({}, state, {
-        wallUsername: state.wallUsername
+        wallUsername: action.newWallUsername
     })
 
     case UPDATE_FRIENDS:
@@ -106,7 +107,6 @@ function model(state = initialState, action) {
     })
 
     case SET_ERROR_FALSE:
-    console.log('SETTING THE ERROR TO FALSE', state.errorLoggingIn)
     return Object.assign({}, state, {
       errorLoggingIn: false
     })
@@ -119,6 +119,11 @@ function model(state = initialState, action) {
     case UPDATE_SEARCH_TERM:
     return Object.assign({}, state, {
       searchTerm: action.searchTerm
+    })
+
+    case SET_PHOTO_URL:
+    return Object.assign({}, state, {
+      photoURL: action.newURL
     })
   
     default:

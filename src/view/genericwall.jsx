@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GenericPostDetail from './genericpost-detail';
-import { setWallUsername } from '../controller/index.js';
 
 class GenericWall extends Component {
     constructor(props) {
