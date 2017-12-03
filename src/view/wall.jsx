@@ -33,11 +33,9 @@ class Wall extends Component {
 
     renderPostDetail() {
         if(this.props.wallUsername === this.state.username) {
-            console.log('ON USERS WALL', this.props.wallUsername)
             return <PostDetail wallUsername={this.state.wallUsername}/>
         }
         else {
-            console.log('ON FRIENDS WALL', this.props.wallUsername)
             return <GenericPostDetail friendsWall={true} wallUsername={this.props.wallUsername}/>
         }
     }

@@ -25,12 +25,8 @@ class FollowUnfollow extends Component {
     handleRender() {
         if(this.props.wallUsername !== this.props.username) {
             for(let i = 0; i < this.props.users.length; i++) {
-                console.log('USERS AT I ', this.props.users[i].user)
-                console.log('the wall username?', this.props.wallUsername)
                 if(this.props.users[i].user === this.props.wallUsername) {
-                    console.log('THIS IS THE RIGHT ONE')
                     if(this.props.users[i].following == false) {
-                        console.log('NOT FOLLOWING THEM')
                         return (
                             <Button
                                 onClick={this.setFollow}
@@ -38,7 +34,6 @@ class FollowUnfollow extends Component {
                         );
                     }
                     else {
-                        console.log('FOLLOWING THEM')
                         return (
                             <Button
                                 onClick={this.setUnFollow}
@@ -51,7 +46,6 @@ class FollowUnfollow extends Component {
     }
 
     render() {
-        console.log('rendering follow unfollow')
         return <div>{this.handleRender()}</div>
     }
  }

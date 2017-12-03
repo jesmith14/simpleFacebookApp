@@ -41,6 +41,7 @@ class Profile extends Component {
     }
  
     render() {
+      console.log('From the Model: ', this.props)
         return (
             <div>
             <div className='row secondRow'>
